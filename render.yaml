@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: soul-reborn
+    runtime: node
+    plan: starter
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/catalog
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 24.22.1
+      - key: DB_PATH
+        value: /var/data/game.sqlite
+    disk:
+      name: soul-reborn-data
+      mountPath: /var/data
+      sizeGB: 1
