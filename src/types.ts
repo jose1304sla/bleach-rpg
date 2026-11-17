@@ -1,0 +1,9 @@
+export type Attribute='strength'|'endurance'|'speed'|'reiatsu'|'control'|'intelligence';
+export type Race='Shinigami'|'Hollow'|'Quincy'|'Fullbringer';
+export interface Item {id:string;name:string;tier:number;original:boolean;description:string;passive?:string;bonus?:Partial<Record<Attribute,number>>;effect?:string;theme?:string;technique?:string;advancedTechnique?:string;bankaiOriginal?:boolean}
+export interface Requirements {level:number;wins:number;training:number}
+export interface Enemy {id:string;name:string;level:number;kind:string;hp:number;attack:number;defense:number;xp:number;coins:number;resistance:string}
+export interface Mission {id:string;name:string;description:string;counter:'wins'|'training'|'bosses';target:number;xp:number;coins:number;spins:number}
+export interface Battle {enemy:string;enemyHP:number;hp:number;energy:number;turn:number;transformed:boolean;cooldowns:Record<string,number>;log:string[];result:null|'win'|'loss'|'fled';reward?:{xp:number;coins:number;spins:number}}
+export interface Player {name:string;race:Race;object:string;level:number;xp:number;xpNeeded:number;coins:number;spins:number;points:number;attributes:Record<Attribute,number>;clan:string|null;weapon:string|null;stage:number;wins:number;training:number;bosses:number;claimed:string[];history:{kind:string;name:string;tier:number;date:string}[];battle:Battle|null;potions:number;lastDaily:string|null;nextStage:Requirements|null;stats:{hp:number;energy:number;physical:number;spiritual:number;defense:number;crit:number;dodge:number;regen:number;initiative:number}}
+export interface Catalog {BALANCE:{maxLevel:number;resetCost:number;clanWeights:number[];weaponWeights:number[];stages:Requirements[]};RARITIES:string[];ATTRIBUTES:Record<Attribute,string>;CLANS:Item[];WEAPONS:Item[];RACES:Record<Race,{icon:string;description:string;advantage:string;weakness:string;stages:string[];skills:string[]}>;ENEMIES:Enemy[];MISSIONS:Mission[]}
